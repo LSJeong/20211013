@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.lsj.prj.member.service.MemberMapper">
+	<select id="memberSelectList" resultType="co.lsj.prj.member.service.MemberVO">
+			select * from member
+	</select>
+	
+	<select id="memberSelect" resultType="co.lsj.prj.member.service.MemberVO" parameterType="co.lsj.prj.member.service.MemberVO">
+		select * from member where id = #{id}
+	</select>
+		
+	<insert id="memberInsert" parameterType="co.lsj.prj.member.service.MemberVO">
+		insert into member(id,name,password,tel,address) values(#{id}, #{name}, #{password}, #{tel}, #{address})
+	</insert>
+	
+	<update id="memberUpdate" parameterType="co.lsj.prj.member.service.MemberVO">
+		update member set name = #{name}, password = #{password}, tel = #{tel}, address = #{address}, author = #{author}
+		where id = #{id}
+		
+	</update>
+	
+	<delete id="memberDelete" parameterType="co.lsj.prj.member.service.MemberVO">
+		delete from member where id = #{id}
+	</delete>
+	
+	<select id="loginCheck" resultType="co.lsj.prj.member.service.MemberVO" >
+		select name, author from member where id = #{id} and password = #{password}
+	</select>
+</mapper>
